@@ -1,5 +1,7 @@
 import time
 
+from selenium.webdriver.common.by import By
+
 
 class LoginPage:
 
@@ -12,19 +14,16 @@ class LoginPage:
         self.logged_user = "maintext"
 
     def enter_user_name(self, user_name):
-        self.driver.find_element_by_name(self.login_input).send_keys(user_name)
-        time.sleep(1)
+        self.driver.find_element(By.NAME, self.login_input).send_keys(user_name)
 
     def enter_password(self, password):
-        self.driver.find_element_by_name(self.password_input).send_keys(password)
-        time.sleep(1)
+        self.driver.find_element(By.NAME, self.password_input).send_keys(password)
 
     def click_on_login_button(self):
-        self.driver.find_element_by_css_selector(self.login_button).click()
-        time.sleep(1)
+        self.driver.find_element(By.CSS_SELECTOR, self.login_button).click()
 
     def login_error_message(self):
-        assert self.driver.find_element_by_class_name(self.error_incorrect_login)
+        assert self.driver.find_element(By.CLASS_NAME, self.error_incorrect_login)
 
     def is_user_login_correctly(self):
-        assert self.driver.find_element_by_class_name(self.logged_user)
+        assert self.driver.find_element(By.CLASS_NAME, self.logged_user)
